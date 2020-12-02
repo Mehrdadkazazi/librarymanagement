@@ -24,9 +24,16 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/bootstrap/dist/css/bootstrap-theme.css",
+              "node_modules/toastr/build/toastr.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/toastr/build/toastr.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -120,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "front"
+  "defaultProject": "front",
+  "cli": {
+    "analytics": "dbe12826-1a30-48fe-9ba1-cdb7cb8583e1"
+  }
 }

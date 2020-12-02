@@ -1,0 +1,23 @@
+<h2>Search User</h2>
+<form class="container" [formGroup]="userForm">
+  <div class="form-control">
+    <label for="name">Name</label>&nbsp;
+    <input formControlName="name" name="name" id="name" placeholder="Enter Name"/>
+  </div>
+  <div class="form-control">
+    <label for="family">Family</label>&nbsp;
+    <input formControlName="family" name="family" id="family" placeholder="Enter Family">
+  </div>
+
+  <div class="form-control">
+    <label for="cardId">cardId</label>&nbsp;
+    <input formControlName="cardId" name="cardId" id="cardId" placeholder="Enter cardId">
+  </div>
+
+  <div class="form-control">
+    <label for="nationalCode">NationalCode</label>&nbsp;
+    <input formControlName="nationalCode" name="nationalCode" id="nationalCode" placeholder="Enter nationalCode">
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="searchAccount()">search</button>
+</form>
