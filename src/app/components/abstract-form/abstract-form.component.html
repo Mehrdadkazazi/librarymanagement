@@ -1,0 +1,22 @@
+<form class="container" [formGroup]="bookViewForm">
+  <div class="form-control">
+    <label for="bookName">book name</label>&nbsp;
+    <input formControlName="bookName" name="bookName" id="bookName" placeholder="Enter book Name"/>
+  </div>
+  <div class="form-control">
+    <label for="ISBN">International Standard Book Number</label>&nbsp;
+    <input formControlName="ISBN" name="ISBN" id="ISBN" placeholder="Enter International Standard Book Number(ISBN)">
+  </div>
+  <div class="form-control">
+    <label for="authorName">Author Name</label>&nbsp;
+    <input formControlName="authorName" name="authorName" id="authorName" placeholder="Enter authorName">
+  </div>
+
+  <div class="form-control">
+    <label for="authorName">Classification</label>
+    <input formControlName="classification" name="classification" id="classification" placeholder="Enter classification">
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="onSubmit(bookViewForm)">Submit</button>
+</form>
+

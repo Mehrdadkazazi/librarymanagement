@@ -1,0 +1,59 @@
+<form [formGroup]="bookForm">
+  <div class="container" *ngIf="bookList && bookList.length > 0">
+    <div class="row clearfix">
+      <div class="col-md-12 column">
+        <table class="table table-bordered table-hover" id="tab_logic">
+          <thead>
+          <tr>
+            <th class="text-center">
+              bookname
+            </th>
+            <th class="text-center">
+              authorName
+            </th>
+            <th class="text-center">
+              isbn
+            </th>
+            <th class="text-center">
+              classification
+            </th>
+            <th class="text-center">
+              Action
+            </th>
+            <th class="text-center">
+              Action
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of bookList">
+            <td>
+              <input type="text" formControlName='bookName'
+                     [(ngModel)]='item.bookName'/>
+            </td>
+            <td>
+              <input type="text" formControlName='authorName'
+                     [(ngModel)]='item.authorName'/>
+            </td>
+            <td>
+              <input type="text" formControlName='isbn'
+                     [(ngModel)]='item.isbn' disabled/>
+            </td>
+            <td>
+              <input type="text" formControlName='classification'
+                     [(ngModel)]='item.classification'
+              />
+            </td>
+            <td>
+              <a id='delete_row' class="pull-right btn btn-danger" (click)="deleteBook(item)">Delete</a>
+            </td>
+            <td>
+              <a id='update_row' class="pull-right btn btn-success" (click)="updateBook()">Update</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</form>

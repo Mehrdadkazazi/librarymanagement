@@ -1,0 +1,25 @@
+<h2>Search Room</h2>
+<form class="container" [formGroup]="bookForm">
+  <div class="form-control">
+    <label for="bookName">book name</label>&nbsp;
+    <input formControlName="bookName" name="bookName" id="bookName" placeholder="Enter book Name"/>
+  </div>
+  <div class="form-control">
+    <label for="isbn">International Standard Book Number</label>&nbsp;
+    <input formControlName="isbn" name="isbn" id="isbn" required placeholder="Enter International Standard Book Number(isbn)"> &nbsp;<span class="text-danger">*</span>
+  </div>
+  <div class="form-control">
+    <label for="authorName">Author Name</label>&nbsp;
+    <input formControlName="authorName" name="authorName" id="authorName" placeholder="Enter authorName">
+  </div>
+
+  <div class="form-control">
+    <label for="authorName">Classification</label>
+    <input formControlName="classification" name="classification" id="classification" placeholder="Enter classification">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="searchBook()">search</button>
+</form>
+<br>
+<hr>
+<br>
+<app-book-list [bookList]="bookList"></app-book-list>

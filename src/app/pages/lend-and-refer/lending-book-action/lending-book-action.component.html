@@ -1,0 +1,63 @@
+<h2>Search Room</h2>
+<form class="container" [formGroup]="bookForm">
+  <div class="form-control">
+    <label for="bookName">book name</label>&nbsp;
+    <input formControlName="bookName" name="bookName" id="bookName" placeholder="Enter book Name"/>
+  </div>
+  <div class="form-control">
+    <label for="isbn">International Standard Book Number</label>&nbsp;
+    <input formControlName="isbn" name="isbn" id="isbn" required
+           placeholder="Enter International Standard Book Number(isbn)"> &nbsp;<span class="text-danger">*</span>
+  </div>
+  <div class="form-control">
+    <label for="authorName">Author Name</label>&nbsp;
+    <input formControlName="authorName" name="authorName" id="authorName" placeholder="Enter authorName">
+  </div>
+
+  <div class="form-control">
+    <label for="authorName">Classification</label>
+    <input formControlName="classification" name="classification" id="classification"
+           placeholder="Enter classification">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="searchFreeBooks()">search</button>
+</form>
+<br>
+<hr>
+<br>
+
+<h2>Search User</h2>
+<form class="container" [formGroup]="userForm">
+  <div class="form-control">
+    <label for="name">Name</label>&nbsp;
+    <input formControlName="name" name="name" id="name" placeholder="Enter Name"/>
+  </div>
+  <div class="form-control">
+    <label for="family">Family</label>&nbsp;
+    <input formControlName="family" name="family" id="family" placeholder="Enter Family">
+  </div>
+
+  <div class="form-control">
+    <label for="cardId">cardId</label>&nbsp;
+    <input formControlName="cardId" name="cardId" id="cardId" placeholder="Enter cardId">
+  </div>
+
+  <div class="form-control">
+    <label for="nationalCode">NationalCode</label>&nbsp;
+    <input formControlName="nationalCode" name="nationalCode" id="nationalCode" placeholder="Enter nationalCode">
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="searchAccount()">search</button>
+</form>
+<br>
+<hr>
+<br>
+
+  <div class="form-group container center-block">
+    <label>ISBN</label>
+    <input type="text"  value="{{this.bookResponseObject.isbn ? this.bookResponseObject.isbn : null}}">&nbsp;&nbsp;&nbsp;
+    <label>Card ID</label>
+    <input type="text"  value="{{this.userResponseObject[0].cardId ? this.userResponseObject[0].cardId : null}}"><br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary" (click)="lendingBookToUser()">Lending</button>
+  </div>
+
