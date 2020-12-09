@@ -39,8 +39,8 @@ export class AccountSearchFormComponent implements OnInit {
     model.nationalCode = form.nationalCode;
 
     if (model.name || model.family || model.cardId || model.nationalCode) {
-      this.apiService.searchUserByFilter(model).subscribe(x => {
-        this.userList = x;
+      this.apiService.searchAllUser(model).subscribe(x => {
+        this.userList = x.data;
         return;
       });
     } else {

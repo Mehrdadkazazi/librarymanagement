@@ -36,7 +36,7 @@ export class BookSearchFormComponent implements OnInit {
     bookModel.jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYwNjg1Njk1NywiaWF0IjoxNjA2ODIwOTU3fQ.S7h1evWRfSYpHlV_8v2_jjjkljbGPu_R-SGubJ_D2Bg';
     if (bookModel.bookName || bookModel.authorName || bookModel.isbn || bookModel.isbn) {
       this.apiService.searchBookByFilter(bookModel).subscribe(x => {
-        this.bookList = x;
+        this.bookList = x.data;
         return;
       });
     }else {

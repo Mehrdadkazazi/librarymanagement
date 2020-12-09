@@ -30,7 +30,7 @@ export class ApiService {
   }
 
   public searchBookByFilter(book: BookModel): Observable<any> {
-    return this.http.post(this.config.apiURL + 'book' + '/findAllByFilter', book).pipe(map(bookList => {
+    return this.http.post(this.config.apiURL + 'book' + '/findAll', book).pipe(map(bookList => {
       return bookList;
     }));
   }
@@ -60,29 +60,29 @@ export class ApiService {
   }
 
   public addPerson(user: UserModel): Observable<any> {
-    return this.http.post(this.config.apiURL + 'person' + '/save', user).pipe(map(responseObject => {
+    return this.http.post(this.config.apiURL + 'member' + '/save', user).pipe(map(responseObject => {
       return responseObject;
     }));
   }
 
   public searchUserByFilter(user: UserModel): Observable<any> {
-    return this.http.post(this.config.apiURL + 'person' + '/findAllByFilter', user).pipe(map(userList => {
+    return this.http.post(this.config.apiURL + 'member' + '/findAllByFilter', user).pipe(map(userList => {
       return userList;
     }));
   }
 
   public searchAllUser(user: UserModel): Observable<any> {
-    return this.http.post(this.config.apiURL + 'person' + '/findAll', user).pipe(map(userList => {
+    return this.http.post(this.config.apiURL + 'member' + '/findAll', user).pipe(map(userList => {
       return userList;
     }));
   }
 
   public deletePerson(user: UserModel): Observable<any> {
-    return this.http.post(this.config.apiURL + 'person' + '/deActivePerson', user);
+    return this.http.post(this.config.apiURL + 'member' + '/delete', user);
   }
 
   public updatePerson(user: UserModel): Observable<any> {
-    return this.http.post(this.config.apiURL + 'person' + '/updatePerson', user);
+    return this.http.post(this.config.apiURL + 'member' + '/update', user);
   }
 
   public lendingBook(lendingModel: LendingModel): Observable<any> {

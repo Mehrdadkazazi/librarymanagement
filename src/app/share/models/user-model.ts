@@ -7,6 +7,7 @@ export class UserModel extends AbstractUser{
   birthDate ?: string;
   address ?: string;
   nationalCode ?: string;
+  activation ?: number;
 
   constructor() {
     super();
@@ -16,5 +17,6 @@ export class UserModel extends AbstractUser{
     this.birthDate ='' ;
     this.address = '' ;
     this.nationalCode = '' ;
+    this.activation = 1;
   }
 }
