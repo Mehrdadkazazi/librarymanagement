@@ -1,54 +1,49 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {BookComponent} from './pages/book/book.component';
+import {BookComponent} from './book/book.component';
 import {SignUpComponent} from './pages/account-panel/sign-up/sign-up.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
-import {AccountManagementComponent} from './pages/account-management/account-management.component';
-import {AccountInsertFormComponent} from './pages/account-management/account-insert-form/account-insert-form.component';
-import {AccountSearchFormComponent} from './pages/account-management/account-search-form/account-search-form.component';
-import {LendAndReferComponent} from './pages/lend-and-refer/lend-and-refer.component';
-import {RoleManagementComponent} from './pages/account-management/role-management/role-management.component';
-import {ReferBookComponent} from './pages/lend-and-refer/lending-book-action/refer-book/refer-book.component';
+import {AccountManagementComponent} from './account-management/account-management.component';
+import {LendAndReferComponent} from './lend-and-refer/lend-and-refer.component';
+import {RoleManagementComponent} from './account-management/role-management/role-management.component';
 
 
 const routes: Routes = [
-  {
-    component : HomePageComponent,
-    path : 'home'
-  },
-  {
-    component: BookComponent,
-    path: 'book',
-    loadChildren: () => import('./pages/book/book.module').then(m => m.BookModule)
-  },
   {
     component: SignUpComponent,
     path: 'signUp'
   },
   {
-    component : AccountManagementComponent,
-    path : "user"
+    component: HomePageComponent,
+    path: 'home'
   },
   {
-    component : AccountInsertFormComponent,
-    path : "user/save"
+    component: BookComponent,
+    path: 'book',
+    loadChildren: () => import('./book/book.module').then(m => m.BookModule)
   },
   {
-    component : AccountSearchFormComponent,
-    path : "user/search"
+    component: AccountManagementComponent,
+    path: 'accountManagement',
+    loadChildren: () => import('./account-management/account-management.module').then(m => m.AccountManagementModule)
   },
   {
-    component : LendAndReferComponent,
-    path : "lendAndRefer"
+    component: LendAndReferComponent,
+    path: 'lendAndRefer',
+    loadChildren: () => import('./lend-and-refer/lend-and-refer.module').then(m => m.LendAndReferModule)
   },
   {
-    component : RoleManagementComponent,
-    path : "user/roleManagement"
+    component: RoleManagementComponent,
+    path: 'user/roleManagement'
   },
-  {
-    component : ReferBookComponent,
-    path : "referBook"
-  }
+  /* {
+     component: NotFoundComponent,
+     path: '404'
+   },
+   {
+     path: '**',
+     redirectTo: '404'
+   }*/
 ];
 
 @NgModule({

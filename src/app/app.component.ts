@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiService} from './pages/service/api-service';
+import {ApiService} from './service/api-service';
 import {AbstractUser} from './share/models/abstract-user';
 
 @Component({
