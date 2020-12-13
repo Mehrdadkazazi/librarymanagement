@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ApiService} from '../../service/api-service';
-import {UserModel} from '../../share/models/user-model';
+import {UserModel} from '../../share/models/user.model';
 
 @Component({
   selector: 'app-account-search-form',

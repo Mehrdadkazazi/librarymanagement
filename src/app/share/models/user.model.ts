@@ -1,6 +1,6 @@
-import {AbstractUser} from './abstract-user';
+import {AbstractUserModel} from './abstract-user.model';
 
-export class UserModel extends AbstractUser{
+export class UserModel extends AbstractUserModel{
   cardId ?: number;
   name ?: string;
   family ?: string;

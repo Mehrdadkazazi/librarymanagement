@@ -3,10 +3,10 @@ import {Config} from './config';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {LendingModel} from '../share/models/lending-model';
-import {BookModel} from '../share/models/bookModel';
-import {UserModel} from '../share/models/user-model';
-import {AbstractUser} from '../share/models/abstract-user';
+import {LendingModel} from '../share/models/lending.model';
+import {BookModel} from '../share/models/book.model';
+import {UserModel} from '../share/models/user.model';
+import {AbstractUserModel} from '../share/models/abstract-user.model';
 
 @Injectable()
 
@@ -17,7 +17,7 @@ export class ApiService {
   constructor(private http: HttpClient) {
   }
 
-  public loginService(abstractUser: AbstractUser): Observable<any> {
+  public loginService(abstractUser: AbstractUserModel): Observable<any> {
     return this.http.post(this.config.apiURL + 'authenticate', abstractUser).pipe(map(responseEntity => {
       return responseEntity;
     }));

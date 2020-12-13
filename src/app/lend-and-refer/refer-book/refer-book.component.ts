@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {BookModel} from '../../share/models/bookModel';
+import {BookModel} from '../../share/models/book.model';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ApiService} from '../../service/api-service';
 

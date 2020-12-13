@@ -1,6 +1,6 @@
-import {AbstractUser} from './abstract-user';
+import {AbstractUserModel} from './abstract-user.model';
 
-export class BookModel extends AbstractUser {
+export class BookModel extends AbstractUserModel {
   bookName ?: string;
   isbn ?: string;
   authorName ?: string;

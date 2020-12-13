@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ApiService} from '../../service/api-service';
-import {BookModel} from '../../share/models/bookModel';
+import {BookModel} from '../../share/models/book.model';
 import {NotificationService} from '../../service/notification.service';
 
 @Component({
@@ -37,18 +37,21 @@ export class BookSearchFormComponent implements OnInit {
     bookModel.classification = formModel.classification;
     bookModel.jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYwNjg1Njk1NywiaWF0IjoxNjA2ODIwOTU3fQ.S7h1evWRfSYpHlV_8v2_jjjkljbGPu_R-SGubJ_D2Bg';
     if (bookModel.bookName || bookModel.authorName || bookModel.isbn || bookModel.isbn) {
-      this.apiService.searchBookByFilter(bookModel).subscribe(x => {
-        this.notificationService.showInfo('search done', 'info');
-        this.bookList = x.data;
-        return;
+      this.apiService.searchBookByFilter(bookModel).subscribe({
+        next: this.onSuccess.bind(this),
+        error: this.onError.bind(this),
       });
     } else {
       this.notificationService.showError('no item found', 'ERROR');
-      /*} else {
-        this.apiService.searchAllBook(bookModel).subscribe(x => {
-          this.bookList = x;
-          return;
-        });*/
     }
+  }
+
+  private onSuccess(response) {
+    this.bookList = response.data;
+    this.notificationService.showInfo(response.message, 'info');
+  }
+
+  private onError(error) {
+    this.notificationService.showError(error.status, 'SearchFailed');
   }
 }

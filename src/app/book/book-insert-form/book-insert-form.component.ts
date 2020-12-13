@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../../service/api-service';
-import {BookModel} from '../../share/models/bookModel';
+import {BookModel} from '../../share/models/book.model';
 import {NotificationService} from '../../service/notification.service';
+import {Config} from '../../service/config';
 
 @Component({
   selector: 'app-book-insert-form',
@@ -14,6 +15,8 @@ export class BookInsertFormComponent implements OnInit {
   bookModel: BookModel;
   responseObject: any;
   submitted: boolean = false;
+
+  public classifications = Config.CLASSIFICATION_LIST;
 
   constructor(private formBuilder: FormBuilder,
               private apiService: ApiService,
@@ -47,14 +50,16 @@ export class BookInsertFormComponent implements OnInit {
     bookModel.isbn = formModel.isbn;
     bookModel.classification = formModel.classification;
 
-    this.apiService.addBook(bookModel).subscribe(responseObject => {
-      this.responseObject = responseObject;
-      if (responseObject) {
-        this.notificationService.showSuccess(this.responseObject.message, 'success');
-        this.bookForm.reset();
-      } else {
-        this.notificationService.showSuccess('saveFailed', 'saveFailed');
-      }
+    this.apiService.addBook(bookModel).subscribe( {
+      next : this.onSuccess.bind(this),
+      error : this.onError.bind(this),
     });
+  }
+  private onSuccess(response){
+    this.notificationService.showSuccess(response.message, 'success');
+  }
+
+  private onError(error){
+    this.notificationService.showError(error.status, 'saveFailed');
   }
 }

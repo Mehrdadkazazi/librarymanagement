@@ -1,6 +1,6 @@
 import {Component, Inject, Injectable, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {UserModel} from '../../share/models/user-model';
+import {UserModel} from '../../share/models/user.model';
 import {ApiService} from '../../service/api-service';
 import {DatePipe} from '@angular/common';
 

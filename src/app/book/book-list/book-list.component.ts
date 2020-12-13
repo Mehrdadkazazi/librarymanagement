@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ApiService} from '../../service/api-service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {BookModel} from '../../share/models/bookModel';
+import {BookModel} from '../../share/models/book.model';
 
 @Component({
   selector: 'app-book-list',

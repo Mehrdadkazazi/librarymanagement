@@ -1,9 +1,9 @@
 import {Component, Injectable, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ApiService} from '../../service/api-service';
-import {LendingModel} from '../../share/models/lending-model';
-import {BookModel} from '../../share/models/bookModel';
-import {UserModel} from '../../share/models/user-model';
+import {LendingModel} from '../../share/models/lending.model';
+import {BookModel} from '../../share/models/book.model';
+import {UserModel} from '../../share/models/user.model';
 
 @Component({
   selector: 'app-lending-book-action',

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {UserModel} from '../../share/models/user-model';
+import {UserModel} from '../../share/models/user.model';
 import {ApiService} from '../../service/api-service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 

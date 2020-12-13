@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from './service/api-service';
-import {AbstractUser} from './share/models/abstract-user';
+import {AbstractUserModel} from './share/models/abstract-user.model';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private abstractUser: AbstractUser,
+    private abstractUser: AbstractUserModel,
   ) {
     this.logInPageStatus = true;
   }

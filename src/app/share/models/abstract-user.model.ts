@@ -1,4 +1,4 @@
-export class AbstractUser {
+export class AbstractUserModel {
   id: number;
   jwt: string;
   userName: string;

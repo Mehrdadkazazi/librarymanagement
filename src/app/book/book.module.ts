@@ -7,6 +7,7 @@ import {BookComponent} from './book.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AbstractFormComponent} from '../pages/abstract-form/abstract-form.component';
+import {UserService} from '../service/User.Service';
 
 @NgModule({
   declarations: [
