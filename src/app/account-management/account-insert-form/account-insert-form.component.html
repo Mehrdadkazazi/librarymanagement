@@ -1,29 +1,58 @@
 <h2>Insert New User</h2>
-<form class="container" [formGroup]="userForm">
-  <div class="form-control">
-    <label for="name">Name</label>&nbsp;
-    <input formControlName="name" name="name" id="name" placeholder="Enter Name">
-  </div>
+<div class="card m-3">
+  <div class="p-card-body">
+    <form [formGroup]="userForm" class="container" (ngSubmit)="onSubmit()">
+      <div class="form-group col-5">
+        <label>Name</label>&nbsp;
+        <input type="text" formControlName="name" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && showError.name.errors }" placeholder="Enter Name"/>
+        <div *ngIf="submitted && showError.name.errors">
+          <div *ngIf="showError.name.errors.required" class="text-danger">Name is required</div>
+        </div>
+      </div>
 
-  <div class="form-control">
-    <label for="family">Family</label>&nbsp;
-    <input formControlName="family" name="family" id="family" placeholder="Enter Family">
-  </div>
+      <div class="form-group col-5">
+        <label>Family</label>&nbsp;
+        <input type="text" formControlName="family" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && showError.family.errors }" placeholder="Enter Family"/>
+        <div *ngIf="submitted && showError.family.errors">
+          <div *ngIf="showError.family.errors.required" class="text-danger">Family is required</div>
+        </div>
+      </div>
 
-  <div class="form-control">
-    <label for="birthDate">BirthDate</label>&nbsp;
-    <input type="date" formControlName="birthDate" name="birthDate" id="birthDate" placeholder="Enter BirthDate">
-  </div>
+      <div class="form-group col-5">
+        <label>BirthDate</label>&nbsp;
+        <input type="date" formControlName="birthDate" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && showError.birthDate.errors }"
+               placeholder="Enter Birthdate"/>
+        <div *ngIf="submitted && showError.birthDate.errors">
+          <div *ngIf="showError.birthDate.errors.required" class="text-danger">Birthdate is required</div>
+        </div>
+      </div>
 
-  <div class="form-control">
-    <label for="address">Address</label>&nbsp;
-    <input formControlName="address" name="address" id="address" placeholder="Enter Address">
-  </div>
+      <div class="form-group col-5">
+        <label>Address</label>&nbsp;
+        <input type="text" formControlName="address" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && showError.address.errors }"
+               placeholder="Enter Address"/>
+        <div *ngIf="submitted && showError.address.errors">
+          <div *ngIf="showError.address.errors.required" class="text-danger">Address is required</div>
+        </div>
+      </div>
 
-  <div class="form-control">
-    <label for="nationalCode">NationalCode</label>
-    <input type="text" maxlength="10" minlength="8" formControlName="nationalCode" name="nationalCode" id="nationalCode"
-           placeholder="Enter nationalCode">
+      <div class="form-group col-5">
+        <label>NationalCode</label>&nbsp;
+        <input type="text" formControlName="nationalCode" class="form-control" maxlength="10" minlength="8"
+               [ngClass]="{ 'is-invalid': submitted && showError.birthDate.errors }"
+               placeholder="Enter NationalCode"/>
+        <div *ngIf="submitted && showError.nationalCode.errors">
+          <div *ngIf="showError.nationalCode.errors.required" class="text-danger">NationalCode is required</div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
   </div>
-  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
-</form>
+</div>

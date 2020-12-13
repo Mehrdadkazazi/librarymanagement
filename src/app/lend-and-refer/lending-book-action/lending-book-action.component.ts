@@ -67,9 +67,8 @@ export class LendingBookActionComponent implements OnInit {
     bookModel.authorName = bookForm.authorName;
     bookModel.classification = bookForm.classification;
 
-    this.apiService.searchFreeBooks(bookModel).subscribe( x => {
-      console.table(x.data);
-     return this.bookResponseObject = x.data[0] ;
+    this.apiService.searchFreeBooks(bookModel).subscribe( response => {
+     return this.bookResponseObject = response.data[0] ;
     })
 
   }

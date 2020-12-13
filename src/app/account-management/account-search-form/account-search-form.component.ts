@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ApiService} from '../../service/api-service';
 import {UserModel} from '../../share/models/user.model';
+import {NotificationService} from '../../service/notification.service';
 
 @Component({
   selector: 'app-account-search-form',
@@ -16,6 +17,7 @@ export class AccountSearchFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
+    private notificationService: NotificationService,
   ) {
   }
 
@@ -29,7 +31,6 @@ export class AccountSearchFormComponent implements OnInit {
     });
   }
 
-
   searchAccount() {
     let form = this.userForm.value;
     let model = new UserModel();
@@ -39,15 +40,21 @@ export class AccountSearchFormComponent implements OnInit {
     model.nationalCode = form.nationalCode;
 
     if (model.name || model.family || model.cardId || model.nationalCode) {
-      this.apiService.searchAllUser(model).subscribe(x => {
-        this.userList = x.data;
-        return;
+      this.apiService.searchAllUser(model).subscribe({
+        next: this.onSuccess.bind(this),
+        error: this.onError.bind(this),
       });
     } else {
-      this.apiService.searchAllUser(model).subscribe(x => {
-        this.userList = x;
-        return;
-      });
+      this.notificationService.showError('no item found', 'ERROR');
     }
+  }
+
+  private onSuccess(response) {
+    this.userList = response.data;
+    this.notificationService.showInfo(response.message, 'info');
+  }
+
+  private onError(error) {
+    this.notificationService.showError(error.status, 'SearchFailed');
   }
 }
