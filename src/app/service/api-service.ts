@@ -31,7 +31,6 @@ export class ApiService {
 
   public searchBookByFilter(book: BookModel): Observable<any> {
     return this.http.post(this.config.apiURL + 'book' + '/findAll', book).pipe(map(bookList => {
-      debugger;
       return bookList;
     }));
   }

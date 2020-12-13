@@ -1,22 +1,47 @@
 <h2>Insert Room</h2>
-<form class="container" [formGroup]="bookForm">
-  <div class="form-control">
-    <label for="bookName">book name</label>&nbsp;
-    <input formControlName="bookName" name="bookName" id="bookName" placeholder="Enter book Name"/>
-  </div>
-  <div class="form-control">
-    <label for="isbn">International Standard Book Number</label>&nbsp;
-    <input formControlName="isbn" name="isbn" id="isbn" placeholder="Enter International Standard Book Number(isbn)">
-  </div>
-  <div class="form-control">
-    <label for="authorName">Author Name</label>&nbsp;
-    <input formControlName="authorName" name="authorName" id="authorName" placeholder="Enter authorName">
-  </div>
+<div class="card m-3">
+  <div class="p-card-body">
+    <form [formGroup]="bookForm" class="container" (ngSubmit)="onSubmit()">
+      <div class="form-group col-5">
+        <label>book name</label>&nbsp;
+        <input type="text" formControlName="bookName" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && showError.bookName.errors }" placeholder="Enter book Name"/>
+        <div *ngIf="submitted && showError.bookName.errors">
+          <div *ngIf="showError.bookName.errors.required" class="text-danger">bookName is required</div>
+        </div>
+      </div>
 
-  <div class="form-control">
-    <label for="authorName">Classification</label>
-    <input formControlName="classification" name="classification" id="classification"
-           placeholder="Enter classification">
+      <div class="form-group col-5">
+        <label>Author Name</label>&nbsp;
+        <input type="text" formControlName="authorName" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && showError.authorName.errors }" placeholder="Enter Author Name"/>
+        <div *ngIf="submitted && showError.authorName.errors">
+          <div *ngIf="showError.authorName.errors.required" class="text-danger">Author Name is required</div>
+        </div>
+      </div>
+
+      <div class="form-group col-5">
+        <label>International Standard Book Number</label>&nbsp;
+        <input type="text" formControlName="isbn" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && showError.isbn.errors }"
+               placeholder="Enter International Standard Book Number"/>
+        <div *ngIf="submitted && showError.isbn.errors">
+          <div *ngIf="showError.isbn.errors.required" class="text-danger">isbn is required</div>
+        </div>
+      </div>
+
+      <div class="form-group col-5">
+        <label>Classification</label>&nbsp;
+        <input type="text" formControlName="classification" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && showError.classification.errors }"
+               placeholder="Enter Classification"/>
+        <div *ngIf="submitted && showError.classification.errors">
+          <div *ngIf="showError.classification.errors.required" class="text-danger">classification is required</div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
   </div>
-  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
-</form>
+</div>

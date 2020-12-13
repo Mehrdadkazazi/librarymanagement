@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../../service/api-service';
 import {BookModel} from '../../share/models/bookModel';
+import {NotificationService} from '../../service/notification.service';
 
 @Component({
   selector: 'app-book-insert-form',
@@ -11,22 +12,34 @@ import {BookModel} from '../../share/models/bookModel';
 export class BookInsertFormComponent implements OnInit {
   bookForm: FormGroup;
   bookModel: BookModel;
-  responseObject : any ;
+  responseObject: any;
+  submitted: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
-              private apiService: ApiService,) {
+              private apiService: ApiService,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
     this.bookForm = this.formBuilder.group({
-      bookName: null,
-      isbn: null,
-      authorName: null,
-      classification: null
+      bookName: ['', Validators.required],
+      isbn: ['', Validators.required],
+      authorName: ['', Validators.required],
+      classification: ['', Validators.required],
     });
   }
 
+  get showError() {
+    return this.bookForm.controls;
+  }
+
   onSubmit() {
+    this.submitted = true;
+
+    if (this.bookForm.invalid) {
+      this.notificationService.showWarning('insert Fields', 'insert Fields');
+      return;
+    }
     let bookModel = new BookModel();
     let formModel = this.bookForm.value;
     bookModel.bookName = formModel.bookName;
@@ -34,12 +47,13 @@ export class BookInsertFormComponent implements OnInit {
     bookModel.isbn = formModel.isbn;
     bookModel.classification = formModel.classification;
 
-    this.apiService.addBook(bookModel).subscribe(x => {
-      this.responseObject = x;
-      if (x) {
-        alert(this.responseObject.message);
-      }else {
-        alert ("save failed ...")
+    this.apiService.addBook(bookModel).subscribe(responseObject => {
+      this.responseObject = responseObject;
+      if (responseObject) {
+        this.notificationService.showSuccess(this.responseObject.message, 'success');
+        this.bookForm.reset();
+      } else {
+        this.notificationService.showSuccess('saveFailed', 'saveFailed');
       }
     });
   }

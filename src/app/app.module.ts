@@ -17,6 +17,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {AccountManagementModule} from './account-management/account-management.module';
 import {AbstractUser} from './share/models/abstract-user';
 import {LendAndReferModule} from './lend-and-refer/lend-and-refer.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
+import {NotificationService} from './service/notification.service';
 
 @NgModule({
   declarations: [
@@ -37,13 +40,16 @@ import {LendAndReferModule} from './lend-and-refer/lend-and-refer.module';
     ReactiveFormsModule,
     HttpClientModule,
     AccountManagementModule,
-    LendAndReferModule
+    LendAndReferModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     FormBuilder,
     ApiService,
     DatePipe,
-    AbstractUser
+    AbstractUser,
+    NotificationService
   ],
   exports: [
     HeaderComponent,

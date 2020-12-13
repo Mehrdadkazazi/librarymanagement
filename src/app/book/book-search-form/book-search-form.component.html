@@ -1,24 +1,36 @@
 <h2>Search Room</h2>
-<form class="container" [formGroup]="bookForm">
-  <div class="form-control">
-    <label for="bookName">book name</label>&nbsp;
-    <input formControlName="bookName" name="bookName" id="bookName" placeholder="Enter book Name"/>
-  </div>
-  <div class="form-control">
-    <label for="isbn">International Standard Book Number</label>&nbsp;
-    <input formControlName="isbn" name="isbn" id="isbn" required placeholder="Enter International Standard Book Number(isbn)"> &nbsp;<span class="text-danger">*</span>
-  </div>
-  <div class="form-control">
-    <label for="authorName">Author Name</label>&nbsp;
-    <input formControlName="authorName" name="authorName" id="authorName" placeholder="Enter authorName">
-  </div>
+<div class="card m-3">
+  <div class="p-card-body">
+    <form [formGroup]="bookForm" class="container" (ngSubmit)="searchBook()">
+      <div class="form-group col-5">
+        <label>book name</label>&nbsp;
+        <input type="text" formControlName="bookName" class="form-control" name="bookName"
+               placeholder="Enter book Name"/>
+      </div>
 
-  <div class="form-control">
-    <label for="authorName">Classification</label>
-    <input formControlName="classification" name="classification" id="classification" placeholder="Enter classification">
+      <div class="form-group col-5">
+        <label>International Standard Book Number</label>&nbsp;
+        <input type="text" formControlName="isbn" name="isbn" class="form-control"
+               placeholder="Enter International Standard Book Number(isbn)">
+      </div>
+
+      <div class="form-group col-5">
+        <label>Author Name</label>&nbsp;
+        <input type="text" formControlName="authorName" class="form-control" name="authorName"
+               placeholder="Enter authorName">
+      </div>
+
+      <div class="form-group col-5">
+        <label>Classification</label>
+        <input type="text" formControlName="classification" class="form-control" name="classification"
+               placeholder="Enter classification">
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">search</button>
+      </div>
+    </form>
   </div>
-  <button type="submit" class="btn btn-primary" (click)="searchBook()">search</button>
-</form>
+</div>
 <br>
 <hr>
 <br>
