@@ -1,41 +1,41 @@
-<div  *ngIf="logInPageStatus === true">
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" disabled="true">WebSiteName</a>
+<div *ngIf="logInPageStatus === true">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" disabled="true">WebSiteName</a>
+      </div>
     </div>
-  </div>
-</nav>
-<div class="container" method="get">
-  <div id="legend">
-    <legend class="">Log In</legend>
-  </div>
-  <div class="control-group">
-    <!-- Username -->
-    <label class="control-label" for="username">Username</label>
-    <div class="controls">
-      <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+  </nav>
+  <form class="container" [formGroup]="logInForm" (ngSubmit)="signIn()">
+    <div id="legend">
+      <legend class="">Log In</legend>
     </div>
-  </div>
+    <div class="control-group" >
+      <!-- Username -->
+      <label class="control-label">Username</label>
+      <div class="controls">
+        <input type="text" formControlName="username" id="username" name="username" placeholder="" class="input-xlarge">
+      </div>
+    </div>
 
-  <div class="control-group">
-    <!-- Password-->
-    <label class="control-label" for="password">Password</label>
-    <div class="controls">
-      <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+    <div class="control-group">
+      <!-- Password-->
+      <label class="control-label">Password</label>
+      <div class="controls">
+        <input type="password" formControlName="password" name="password" placeholder="" class="input-xlarge">
+      </div>
     </div>
-  </div>
-  <br>
-  <div class="control-group">
-    <!-- Button -->
-    <div class="controls">
-      <button class="btn btn-success" routerLink="/home" (click)="hideLogInPage()">LogIn</button>
-      <br><br>
-      <button class="btn btn-primary" routerLink="/signUp" *ngIf="true">SignUp</button>
+    <br>
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-success" routerLink="/home">LogIn</button>
+        <br><br>
+        <button class="btn btn-primary" routerLink="/signUp" *ngIf="true">SignUp</button>
+      </div>
     </div>
-  </div>
-  <app-footer></app-footer>
-</div>
+    <app-footer></app-footer>
+  </form>
 </div>
 <router-outlet></router-outlet>
 

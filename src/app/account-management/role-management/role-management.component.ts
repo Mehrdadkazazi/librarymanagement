@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {UserModel} from '../../share/models/user.model';
 import {ApiService} from '../../service/api-service';
+import {NotificationService} from '../../service/notification.service';
 
 @Component({
   selector: 'app-role-management',
@@ -15,6 +16,7 @@ export class RoleManagementComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
+    private notificationService: NotificationService,
   ) {
   }
 
@@ -38,9 +40,9 @@ export class RoleManagementComponent implements OnInit {
     model.nationalCode = form.nationalCode;
 
     if (model.name || model.family || model.cardId || model.nationalCode) {
-      this.apiService.searchUserByFilter(model).subscribe(x => {
-        this.userList = x;
-        return;
+      this.apiService.searchUserByFilter(model).subscribe({
+        next: this.onSuccess.bind(this),
+        error: this.onError.bind(this),
       });
     } else {
       this.apiService.searchAllUser(model).subscribe(x => {
@@ -48,5 +50,15 @@ export class RoleManagementComponent implements OnInit {
         return;
       });
     }
+  }
+
+  private onSuccess(response) {
+    this.userForm.reset();
+    this.userList=response.data;
+    this.notificationService.showSuccess(response.message, 'success');
+  }
+
+  private onError(error) {
+    this.notificationService.showError(error.status, 'SearchFailed');
   }
 }

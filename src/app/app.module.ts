@@ -13,14 +13,13 @@ import {HomePageComponent} from './pages/home-page/home-page.component';
 import {FooterComponent} from './pages/footer/footer.component';
 import {HeaderComponent} from './pages/header/header.component';
 import {ApiService} from './service/api-service';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {AccountManagementModule} from './account-management/account-management.module';
 import {AbstractUserModel} from './share/models/abstract-user.model';
 import {LendAndReferModule} from './lend-and-refer/lend-and-refer.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {NotificationService} from './service/notification.service';
-import {CustomInterceptor} from './service/custom.interceptor.service';
 import {StorageService} from './service/storage.service';
 import {AuthService} from './service/auth.service';
 import {UserService} from './service/User.Service';
@@ -57,11 +56,6 @@ import {UserService} from './service/User.Service';
     StorageService,
     AuthService,
     UserService,
-    {
-      multi : true,
-      provide : HTTP_INTERCEPTORS,
-      useClass : CustomInterceptor
-    },
   ],
   exports: [
     HeaderComponent,

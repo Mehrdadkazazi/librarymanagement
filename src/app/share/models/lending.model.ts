@@ -1,9 +1,9 @@
 export class LendingModel {
   bookId ?: number;
-  userId ?: number;
+  memberId ?: number;
 
   constructor() {
     this.bookId = 0;
-    this.userId = 0;
+    this.memberId = 0;
   }
 }

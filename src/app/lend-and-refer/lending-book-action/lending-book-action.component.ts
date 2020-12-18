@@ -1,9 +1,10 @@
-import {Component, Injectable, OnInit, ViewChild} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ApiService} from '../../service/api-service';
 import {LendingModel} from '../../share/models/lending.model';
 import {BookModel} from '../../share/models/book.model';
 import {UserModel} from '../../share/models/user.model';
+import {NotificationService} from '../../service/notification.service';
 
 @Component({
   selector: 'app-lending-book-action',
@@ -15,11 +16,13 @@ export class LendingBookActionComponent implements OnInit {
 
   bookForm: FormGroup;
   userForm: FormGroup;
-  bookResponseObject : BookModel;
-  userResponseObject : UserModel;
-  lendingResponseObject : any;
+  bookResponseObject: BookModel;
+  userResponseObject: UserModel;
+  lendingResponseObject: any;
+
   constructor(private apiService: ApiService,
-              private formBuilder: FormBuilder,) {
+              private formBuilder: FormBuilder,
+              public notificationService: NotificationService,) {
   }
 
   ngOnInit(): void {
@@ -47,19 +50,19 @@ export class LendingBookActionComponent implements OnInit {
 
   lendingBookToUser() {
     let lendingModel = new LendingModel();
-    lendingModel.bookId  = this.bookResponseObject.id;
-    lendingModel.userId = this.userResponseObject.id;
+    lendingModel.bookId = this.bookResponseObject.id;
+    lendingModel.memberId = this.userResponseObject.id;
     this.apiService.lendingBook(lendingModel).subscribe(x => {
       this.lendingResponseObject = x;
       if (x) {
         alert(this.lendingResponseObject.message);
-      }else {
-        alert ("lendingBookToUser failed ...");
+      } else {
+        alert('lendingBookToUser failed ...');
       }
     });
   }
 
-  searchFreeBooks(){
+  searchFreeBooks() {
     let bookModel = new BookModel();
     let bookForm = this.bookForm.value;
     bookModel.bookName = bookForm.bookName;
@@ -67,10 +70,16 @@ export class LendingBookActionComponent implements OnInit {
     bookModel.authorName = bookForm.authorName;
     bookModel.classification = bookForm.classification;
 
-    this.apiService.searchFreeBooks(bookModel).subscribe( response => {
-     return this.bookResponseObject = response.data[0] ;
-    })
-
+    this.apiService.searchFreeBooks(bookModel).subscribe(response => {
+      if (!response.data[0]) {
+        alert("not found result");
+        this.notificationService.showError('not found result', 'not found');
+      } else {
+        this.notificationService.showSuccess('search Done', 'success');
+        alert("search Done");
+        return this.bookResponseObject = response.data[0];
+      }
+    });
   }
 
   searchAccount() {

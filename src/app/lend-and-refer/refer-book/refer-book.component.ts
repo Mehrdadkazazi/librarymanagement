@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BookModel} from '../../share/models/book.model';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ApiService} from '../../service/api-service';
+import {NotificationService} from '../../service/notification.service';
 
 @Component({
   selector: 'app-refer-book',
@@ -16,6 +17,7 @@ export class ReferBookComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private formBuilder: FormBuilder,
+    private notificationService : NotificationService,
   ) {
   }
 
@@ -37,8 +39,9 @@ export class ReferBookComponent implements OnInit {
     bookModel.authorName = bookForm.authorName;
     bookModel.classification = bookForm.classification;
 
-    this.apiService.searchSavedBook(bookModel).subscribe(x => {
-      this.bookResponseObject = x;
+    this.apiService.searchSavedBook(bookModel).subscribe( {
+      next : this.onSuccess.bind(this),
+      error : this.onError.bind(this),
     });
   }
 
@@ -51,5 +54,14 @@ export class ReferBookComponent implements OnInit {
           alert("refer failed")
         }
       })
+  }
+
+  private onSuccess(response){
+    this.bookResponseObject = response.data[0];
+    this.notificationService.showInfo(response.message, 'info');
+  }
+
+  private onError (error){
+    this.notificationService.showError(error.status, 'SearchFailed');
   }
 }
